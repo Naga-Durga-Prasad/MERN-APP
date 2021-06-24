@@ -1,5 +1,7 @@
 const exp=require("express")
 const app=exp();
+//for security
+require('dotenv').config()
 
 const path=require("path")
 //import apis
@@ -24,7 +26,7 @@ const mc=require("mongodb").MongoClient;
 
 //url
 
-const mongoUrl="mongodb+srv://Naga:Naga@cluster0.qjyuq.mongodb.net/naga?retryWrites=true&w=majority"
+const mongoUrl=process.env.DB_URL
 //connection with server
 mc.connect(mongoUrl,{useNewUrlParser:true,useUnifiedTopology:true},(err,client)=>{
 
@@ -38,11 +40,13 @@ mc.connect(mongoUrl,{useNewUrlParser:true,useUnifiedTopology:true},(err,client)=
        let userCollectionObject=dbObj.collection("users")
        let adminCollectionObject=dbObj.collection("admin")
        let productCollectionObject=dbObj.collection("product")
+       let cartCollectionObject=dbObj.collection("cart")
         
        //sharing object
        app.set("userCollectionObject",userCollectionObject)
        app.set("adminCollectionObject",adminCollectionObject)
        app.set("productCollectionObject",productCollectionObject)
+       app.set("cartCollectionObject",cartCollectionObject)
 
         console.log("db connection success")
     }

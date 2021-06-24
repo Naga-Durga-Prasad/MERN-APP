@@ -137,13 +137,50 @@ userApi.delete("/deleteuser/:username",errHandler( async(req,res,next)=>{
    }
 }))
 
+//adding items to cart
+userApi.post("/addtocart",errHandler( async(req,res,next)=>{
+    let cartCollectionObject=req.app.get("cartCollectionObject")
+    //get user cart obj
+    let cartObj=req.body;
+  
+
+    //find user in collection
+    let userInCart=await cartCollectionObject.findOne({username:cartObj.username})
+
+    //if user not existed
+    if(userInCart===null){
+        let products=[];
+        
+        products.push(cartObj)
+        let newUserCollectionObject={username:cartObj.username,products:products}
+        //insert
+        await cartCollectionObject.insertOne(newUserCollectionObject)
+        res.send({message:"product added to cart "})
+    }
+
+    else{
+        userInCart.products.push(cartObj)
+        await cartCollectionObject.updateOne({username:cartObj.username},{$set:{...userInCart}})
+        res.send({message:"product added to cart "})
+    }
+}))
+
+//reading cart
+userApi.get("/getcart",errHandler( async(req,res,next)=>{
+   
+    let cartCollectionObject=req.app.get("cartCollectionObject")
+    let userlist= await cartCollectionObject.find().toArray();
+    
+    res.send({message:userlist})
+}))
 
 
 
 //userlogin
 userApi.post("/login",errHandler( async(req,res,next)=>{
     let userCollectionObject=req.app.get("userCollectionObject")
-
+   
+     
     let credentials=req.body;
     //verify user
     let user=await userCollectionObject.findOne({username:credentials.username})
@@ -169,6 +206,20 @@ else{
        res.send({message:"login success",token:token,username:credentials.username,user:user})
     }
 }}))
+
+// count
+userApi.get("/getcount",errHandler( async(req,res,next)=>{
+   
+    let cartCollectionObject=req.app.get("cartCollectionObject")
+    let userlist= await cartCollectionObject.find().toArray();
+    
+    let cart=[...userlist[0].products]
+    let count=cart.length
+    console.log(count)
+    res.send({message:count})
+}))
+
+
 //protected route
 userApi.post("/test",checkToken,errHandler( async(req,res,next)=>{
 

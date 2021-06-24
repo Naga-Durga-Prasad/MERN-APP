@@ -1,42 +1,34 @@
 import { useEffect,useState } from "react"
+import {useHistory} from "react-router-dom"
 
 const axios=require("axios")
-function DispalyProduct(){
+function SampleDispalyProduct(){
 
 
 let [product,setProduct]=useState()
+let histroy=useHistory();
 
 useEffect(()=>{
 axios.get("/product/getproduct")
 .then(res=>{
     let productObj=res.data.message
-    
+    console.log(productObj)
     setProduct([...productObj])
     
 })
 },[])
 
-  function cartItems(elements){
-      console.log(elements)
-      //username from locl storage
-    let username= localStorage.getItem("username")
-    //adding it elements
-    let productObj={...elements}
-    productObj.username=username
-      //make req
-      axios.post("/user/addtocart",productObj)
-      .then(res=>{
-        let  responseObj=res.data
-          alert(responseObj.message)
-      })
-      .catch(err=>{
-          alert(err.message)
-      })
-  }
+function buttonClick(){
+
+    alert("You should login for this operation to excute")
+    histroy.push("/Login")
+}
+  
      
     return(
         
         <div className="row row-cols-sm-3  bg-secondary  ">
+            
             
 
  {
@@ -50,8 +42,8 @@ axios.get("/product/getproduct")
                         <h3>Price : {elements.price}</h3>
                         <h3>Company : {elements.company}</h3>
                         <div className="ms-5 m-3">
-                            <button className="btn btn-success" onClick={()=>cartItems(elements)}>Add to cart</button>
-                            <button className="btn btn-primary ms-5">Place Order</button>
+                            <button className="btn btn-success" onClick={buttonClick}>Add to cart</button>
+                            <button className="btn btn-primary ms-5"onClick={buttonClick}>Place Order</button>
                         </div>
                             </div>
                             </div>
@@ -66,4 +58,4 @@ axios.get("/product/getproduct")
         
     )
 }
-export default DispalyProduct
+export default SampleDispalyProduct

@@ -13,11 +13,13 @@ function Login(params){
        axios.post(`/${userObj.type}/login`,userObj,)
        .then(res=>{
            let resobj=res.data
+         
            if(resobj.message==="login success"){
                //save token to local storage
                localStorage.setItem("token",resobj.token)
                localStorage.setItem("username",resobj.username)
                localStorage.setItem("user",JSON.stringify(resobj.user))
+               
                //set user login status
                params.setLoginStatus(true)
                //navigate to use

@@ -6,6 +6,8 @@ import UserProfile from "./components/userProfile"
 import Product from "./components/product"
 import AddProduct from "./components/addproduct"
 import DispalyProduct from "./components/displayproduct"
+import SampleDispalyProduct from "./components/SampleDisplayProduct"
+import Cart from "./components/cart"
 import Admin from "./components/admin"
 import {useState} from "react"
 import Test from "./components/test"
@@ -84,6 +86,11 @@ function App() {
     <DispalyProduct />
   </Route>
 
+  
+  <Route path="/sampleDispalyProduct">
+    <SampleDispalyProduct />
+  </Route>
+
   <Route path="/Login">
    <Login setLoginStatus={setLoginStatus} />
   </Route>
@@ -96,6 +103,10 @@ function App() {
 
   <Route path="/admin">
     <Admin />
+  </Route>
+
+  <Route path="/Cart">
+    <Cart />
   </Route>
 
 </Switch>

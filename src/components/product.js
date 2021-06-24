@@ -9,7 +9,7 @@ function Product(){
     
     //dispaly page
     function handleDisplayProduct(){
-        histroy.push("/DispalyProduct")
+        histroy.push("/sampleDispalyProduct")
       }
 
 
