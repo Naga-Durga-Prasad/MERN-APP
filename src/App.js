@@ -31,9 +31,7 @@ function App() {
 <li className="nav-item">
      <Link to="/Home" className="nav-link text-warning">Home</Link>
   </li>
-  <li className="nav-item">
-     <Link to="/Register" className="nav-link text-primary">Register</Link>
-  </li>
+  
 
   <li className="nav-item">
      <Link to="/test" className="nav-link text-warning">Test</Link>
@@ -44,9 +42,13 @@ function App() {
   </li>
 
  {  !loginStatus?
+ <ul className="navbar-nav"><li className="nav-item">
+ <Link to="/Register" className="nav-link text-primary">Register</Link>
+</li> 
   <li className="nav-item">
   <Link to="/Login" className="nav-link text-warning">Login</Link>
   </li>
+  </ul>
    :
   <li className="nav-item">
   <Link to="/Login" onClick={()=>logout()} className="nav-link text-success">Logout</Link>

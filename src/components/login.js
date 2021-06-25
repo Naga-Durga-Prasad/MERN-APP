@@ -8,7 +8,7 @@ function Login(params){
 
 
     const formHandleSubmit=(userObj)=>{
-
+      
         
        axios.post(`/${userObj.type}/login`,userObj,)
        .then(res=>{
@@ -19,7 +19,7 @@ function Login(params){
                localStorage.setItem("token",resobj.token)
                localStorage.setItem("username",resobj.username)
                localStorage.setItem("user",JSON.stringify(resobj.user))
-               
+              
                //set user login status
                params.setLoginStatus(true)
                //navigate to use

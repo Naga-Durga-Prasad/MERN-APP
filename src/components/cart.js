@@ -10,7 +10,7 @@ useEffect(()=>{
 axios.get("/user/getcart")
 .then(res=>{
     let cartObj=res.data.message
-   console.log(cartObj[0].products[0].productName)
+ 
     setCart([...cartObj])
    
     
@@ -20,7 +20,7 @@ axios.get("/user/getcart")
 
     return(<div className="border border-dark m-5">
           <table className="table table-bordered bg-dark text-light text-center ">
-              <tr className="text-dark">
+              <tr className="text-light h4">
               <th>Product Name</th>
               <th>Price</th>
               <th>Company</th>
