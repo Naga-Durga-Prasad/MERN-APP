@@ -33,9 +33,7 @@ function App() {
   </li>
   
 
-  <li className="nav-item">
-     <Link to="/test" className="nav-link text-warning">Test</Link>
-  </li>
+ 
 
 
 
@@ -70,9 +68,6 @@ function App() {
     <Register />
   </Route>
 
-  <Route path="/test">
-    <Test />
-  </Route>
 
   <Route path="/Product">
     <Product />
