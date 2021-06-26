@@ -166,11 +166,13 @@ userApi.post("/addtocart",errHandler( async(req,res,next)=>{
 }))
 
 //reading cart
-userApi.get("/getcart",errHandler( async(req,res,next)=>{
+userApi.get("/getcart/:username",errHandler( async(req,res,next)=>{
+    let username=req.params.username
+    
    
     let cartCollectionObject=req.app.get("cartCollectionObject")
-    let userlist= await cartCollectionObject.find().toArray();
-    
+    let userlist= await cartCollectionObject.findOne({username:username})
+  
     res.send({message:userlist})
 }))
 
@@ -208,12 +210,14 @@ else{
 }}))
 
 // count
-userApi.get("/getcount",errHandler( async(req,res,next)=>{
+userApi.get("/getcount/:username",errHandler( async(req,res,next)=>{
    
+    let username=req.params.username
+
     let cartCollectionObject=req.app.get("cartCollectionObject")
-    let userlist= await cartCollectionObject.find().toArray();
+    let userlist= await cartCollectionObject.findOne({username:username})
     
-    let cart=[...userlist[0].products]
+    let cart=[...userlist.products]
     let count=cart.length
     console.log(count)
     res.send({message:count})

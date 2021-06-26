@@ -12,7 +12,7 @@ function UserProfile(){
 let paramsObj=useParams()
 
 useEffect(()=>{
-    axios.get("/user/getcount")
+    axios.get(`/user/getcount/${localStorage.getItem("username")}`)
 .then(res=>{
     let userobj=res.data.message
     console.log(userobj)

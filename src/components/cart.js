@@ -7,11 +7,11 @@ function Cart(){
     let [cart,setCart]=useState()
 
 useEffect(()=>{
-axios.get("/user/getcart")
+axios.get(`/user/getcart/${localStorage.getItem("username")}`)
 .then(res=>{
     let cartObj=res.data.message
  
-    setCart([...cartObj])
+    setCart({...cartObj})
    
     
 })
@@ -29,7 +29,7 @@ axios.get("/user/getcart")
               </tr>
               
               {
-               cart && cart[0].products.map((elements)=>{
+               cart && cart.products.map((elements)=>{
                    return(
                        <tr>
                        <td>{elements.productName}</td>
