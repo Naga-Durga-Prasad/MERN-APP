@@ -6,7 +6,7 @@ import UserProfile from "./components/userProfile"
 import Product from "./components/product"
 import AddProduct from "./components/addproduct"
 import DispalyProduct from "./components/displayproduct"
-import SampleDispalyProduct from "./components/SampleDisplayProduct"
+
 import Cart from "./components/cart"
 import Admin from "./components/admin"
 import {useState} from "react"
@@ -37,9 +37,7 @@ function App() {
      <Link to="/test" className="nav-link text-warning">Test</Link>
   </li>
 
-  <li className="nav-item">
-     <Link to="/Product" className="nav-link text-primary">Product</Link>
-  </li>
+
 
  {  !loginStatus?
  <ul className="navbar-nav"><li className="nav-item">
@@ -89,9 +87,7 @@ function App() {
   </Route>
 
   
-  <Route path="/sampleDispalyProduct">
-    <SampleDispalyProduct />
-  </Route>
+ 
 
   <Route path="/Login">
    <Login setLoginStatus={setLoginStatus} />
