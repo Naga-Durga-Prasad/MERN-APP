@@ -10,7 +10,7 @@ import DispalyProduct from "./components/displayproduct"
 import Cart from "./components/cart"
 import Admin from "./components/admin"
 import {useState} from "react"
-import Test from "./components/test"
+
 function App() {
 
   let [loginStatus,setLoginStatus]=useState(false)
